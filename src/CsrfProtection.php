@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace FluencePrototype\Security;
 
 use Attribute;
+use FluencePrototype\Http\HttpUrl;
 use FluencePrototype\Http\Messages\Request\FormService;
 use FluencePrototype\Http\Messages\Response\StatusCodes;
 
@@ -26,9 +27,10 @@ class CsrfProtection
         $csrfToken = $formService->getString(name: $csrfProtectionService::CSRF_NAME);
 
         if (!$csrfToken || !$csrfProtectionService->isValid(csrfToken: $csrfToken)) {
-            $currentUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+            $currentUrl = HttpUrl::createFromCurrentUrl();
 
-            header(header: 'Location: ' . $currentUrl, replace: true, response_code: StatusCodes::SEE_OTHER);
+            header(header: 'HTTP/1.1 303 See Other');
+            header(header: 'Location: ' . $currentUrl);
 
             exit;
         }
