@@ -6,7 +6,7 @@ namespace FluencePrototype\Security;
 
 use Attribute;
 use FluencePrototype\Http\Messages\Request\FormService;
-use FluencePrototype\Http\Messages\Response\RedirectionService;
+use FluencePrototype\Http\Messages\Response\StatusCodes;
 
 /**
  * Class CsrfProtection
@@ -26,8 +26,11 @@ class CsrfProtection
         $csrfToken = $formService->getString(name: $csrfProtectionService::CSRF_NAME);
 
         if (!$csrfToken || !$csrfProtectionService->isValid(csrfToken: $csrfToken)) {
-            $redirectionService = new RedirectionService();
-            $redirectionService->redirectToCurrentPage(responseCode: $redirectionService::HTTP_SEE_OTHER);
+            $currentUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+            header(header: 'Location: ' . $currentUrl, replace: true, response_code: StatusCodes::SEE_OTHER);
+
+            exit;
         }
     }
 
