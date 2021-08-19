@@ -12,10 +12,10 @@ use ReCaptcha\ReCaptcha;
  * Class ReCaptchaService
  * @package FluencePrototype\Security
  */
-class ReCaptchaService
+class ReCaptchaProtectionService
 {
 
-    const CAPTCHA_NAME = 'g-recaptcha-response';
+    public const G_RECAPTCHA_HOSTNAME = 'g-recaptcha-response';
 
     /**
      * @return string

@@ -14,7 +14,8 @@
   "require": {
     "php": ">=8.0.0",
     "fluence-prototype/http": "^1.0",
-    "fluence-prototype/session": "^1.0"
+    "fluence-prototype/session": "^1.0",
+    "google/recaptcha": "^1.2"
   },
   "autoload": {
     "psr-4": {

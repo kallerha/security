@@ -14,7 +14,7 @@ use FluencePrototype\Session\SessionService;
 class CsrfProtectionService
 {
 
-    const CSRF_NAME = 'csrf_token';
+    public const CSRF_NAME = 'csrf_token';
 
     private static ?string $csrfToken = null;
 

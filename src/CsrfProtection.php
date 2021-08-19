@@ -7,7 +7,6 @@ namespace FluencePrototype\Security;
 use Attribute;
 use FluencePrototype\Http\HttpUrl;
 use FluencePrototype\Http\Messages\Request\FormService;
-use FluencePrototype\Http\Messages\Response\StatusCodes;
 
 /**
  * Class CsrfProtection
