@@ -15,14 +15,14 @@ use ReCaptcha\ReCaptcha;
 class ReCaptchaProtectionService
 {
 
-    public const G_RECAPTCHA_HOSTNAME = 'g-recaptcha-response';
+    public const G_RECAPTCHA_NAME = 'g-recaptcha-response';
 
     /**
      * @return string
      */
     public function attachToForm(): string
     {
-        return '<input type="hidden" id="' . $this::CAPTCHA_NAME . '" name="' . $this::CAPTCHA_NAME . '">' . PHP_EOL;
+        return '<input type="hidden" id="' . $this::G_RECAPTCHA_NAME . '" name="' . $this::G_RECAPTCHA_NAME . '">' . PHP_EOL;
     }
 
     /**
