@@ -21,7 +21,7 @@ class ReCaptchaProtection
         $reCaptchaProtectionService = new ReCaptchaProtectionService();
         $captchaResponse = $formService->getString(name: $reCaptchaProtectionService::G_RECAPTCHA_NAME);
 
-        if (!$captchaResponse || !$reCaptchaService->isValid(captchaResponse: $captchaResponse)) {
+        if (!$captchaResponse || !$reCaptchaProtectionService->isValid(captchaResponse: $captchaResponse)) {
             $currentUrl = HttpUrl::createFromCurrentUrl();
 
             header(header: 'HTTP/1.1 303 See Other');
