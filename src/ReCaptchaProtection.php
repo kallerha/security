@@ -18,8 +18,8 @@ class ReCaptchaProtection
     public function __construct()
     {
         $formService = new FormService();
-        $reCaptchaService = new ReCaptchaProtectionService();
-        $captchaResponse = $formService->getString(name: $reCaptchaService::G_RECAPTCHA_HOSTNAME);
+        $reCaptchaProtectionService = new ReCaptchaProtectionService();
+        $captchaResponse = $formService->getString(name: $reCaptchaProtectionService::G_RECAPTCHA_NAME);
 
         if (!$captchaResponse || !$reCaptchaService->isValid(captchaResponse: $captchaResponse)) {
             $currentUrl = HttpUrl::createFromCurrentUrl();
