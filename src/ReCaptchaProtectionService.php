@@ -29,7 +29,7 @@ class ReCaptchaProtectionService
      * @param string $captchaResponse
      * @return bool
      */
-    public function isValid(string $captchaResponse): bool
+    public function isValid(string $captchaResponse, string $subdomain): bool
     {
         $request = new Request();
 
@@ -43,7 +43,7 @@ class ReCaptchaProtectionService
 
         $reCaptcha = new ReCaptcha(secret: $secret);
 
-        $response = $reCaptcha->setExpectedHostname(hostname: $_ENV['G_RECAPTCHA_HOSTNAME'])
+        $response = $reCaptcha->setExpectedHostname(hostname: $subdomain . '.' . $_ENV['G_RECAPTCHA_HOSTNAME'])
             ->verify(response: $captchaResponse, remoteIp: $ip);
 
         if ($response->isSuccess() && $response->getScore() > 0.5) {

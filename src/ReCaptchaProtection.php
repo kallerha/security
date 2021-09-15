@@ -15,13 +15,13 @@ class ReCaptchaProtection
     /**
      * ReCaptcha constructor.
      */
-    public function __construct()
+    public function __construct(string $subdomain = '')
     {
         $formService = new FormService();
         $reCaptchaProtectionService = new ReCaptchaProtectionService();
         $captchaResponse = $formService->getString(name: $reCaptchaProtectionService::G_RECAPTCHA_NAME);
 
-        if (!$captchaResponse || !$reCaptchaProtectionService->isValid(captchaResponse: $captchaResponse)) {
+        if (!$captchaResponse || !$reCaptchaProtectionService->isValid(captchaResponse: $captchaResponse, subdomain: $subdomain)) {
             $currentUrl = HttpUrl::createFromCurrentUrl();
 
             header(header: 'HTTP/1.1 303 See Other');
