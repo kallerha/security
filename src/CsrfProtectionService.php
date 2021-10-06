@@ -35,7 +35,6 @@ class CsrfProtectionService
     public function attachToForm(): string
     {
         if (!$this::$csrfToken) {
-            var_dump($this::$csrfToken);
             $this::$csrfToken = bin2hex(string: random_bytes(length: 32));
         }
 
