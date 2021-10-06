@@ -7,6 +7,7 @@ namespace FluencePrototype\Security;
 use Attribute;
 use FluencePrototype\Http\HttpUrl;
 use FluencePrototype\Http\Messages\Request\FormService;
+use FluencePrototype\Http\Messages\Request\RestDataService;
 
 /**
  * Class CsrfProtection
@@ -22,8 +23,9 @@ class CsrfProtection
     public function __construct()
     {
         $formService = new FormService();
+        $restDataService = new RestDataService();
         $csrfProtectionService = new CsrfProtectionService();
-        $csrfToken = $formService->getString(name: $csrfProtectionService::CSRF_NAME);
+        $csrfToken = $formService->getString(name: $csrfProtectionService::CSRF_NAME) ?? $restDataService->getString(name: $csrfProtectionService::CSRF_NAME);
 
         if (!$csrfToken || !$csrfProtectionService->isValid(csrfToken: $csrfToken)) {
             $currentUrl = HttpUrl::createFromCurrentUrl();

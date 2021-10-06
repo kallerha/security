@@ -35,12 +35,34 @@ class CsrfProtectionService
     public function attachToForm(): string
     {
         if (!$this::$csrfToken) {
+            var_dump($this::$csrfToken);
             $this::$csrfToken = bin2hex(string: random_bytes(length: 32));
         }
 
         $this->sessionService->set(name: $this::CSRF_NAME, value: $this::$csrfToken);
 
         return '<input type="hidden" name="' . $this::CSRF_NAME . '" value="' . $this::$csrfToken . '">' . PHP_EOL;
+    }
+
+    /**
+     * @return object
+     * @throws Exception
+     */
+    public function getToken(): object
+    {
+        if (!$this::$csrfToken) {
+            if ($csrfToken = $this->sessionService->get(name: $this::CSRF_NAME)) {
+                $this::$csrfToken = $csrfToken;
+            } else {
+                $this::$csrfToken = bin2hex(string: random_bytes(length: 32));
+                $this->sessionService->set(name: $this::CSRF_NAME, value: $this::$csrfToken);
+            }
+        }
+
+        return (object)[
+            'name' => $this::CSRF_NAME,
+            'csrf_token' => $this::$csrfToken
+        ];
     }
 
     /**
