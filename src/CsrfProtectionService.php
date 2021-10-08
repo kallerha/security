@@ -6,6 +6,7 @@ namespace FluencePrototype\Security;
 
 use Exception;
 use FluencePrototype\Session\SessionService;
+use JetBrains\PhpStorm\Pure;
 
 /**
  * Class CsrfProtectionService
@@ -16,14 +17,14 @@ class CsrfProtectionService
 
     public const CSRF_NAME = 'csrf_token';
 
-    private static ?string $csrfToken = null;
+    private static null|string $csrfToken = null;
 
     private SessionService $sessionService;
 
     /**
      * CsrfProtectionService constructor.
      */
-    public function __construct()
+    #[Pure] public function __construct()
     {
         $this->sessionService = new SessionService();
     }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace FluencePrototype\Security;
 
-use FluencePrototype\Http\HttpUrl;
 use FluencePrototype\Http\Messages\Request;
 use ReCaptcha\ReCaptcha;
 
@@ -27,6 +26,7 @@ class ReCaptchaProtectionService
 
     /**
      * @param string $captchaResponse
+     * @param string $subdomain
      * @return bool
      */
     public function isValid(string $captchaResponse, string $subdomain): bool

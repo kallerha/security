@@ -15,7 +15,7 @@ class PasswordService
      * @param string $password
      * @return string|null
      */
-    public function hash(string $password): ?string
+    public function hash(string $password): null|string
     {
         if ($passwordHashed = password_hash(password: $password, algo: PASSWORD_ARGON2ID)) {
             return $passwordHashed;
