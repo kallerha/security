@@ -8,7 +8,7 @@ use FluencePrototype\Http\Messages\Request;
 use ReCaptcha\ReCaptcha;
 
 /**
- * Class ReCaptchaService
+ * Class ReCaptchaProtectionService
  * @package FluencePrototype\Security
  */
 class ReCaptchaProtectionService
