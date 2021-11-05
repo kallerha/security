@@ -13,8 +13,8 @@
   ],
   "require": {
     "php": ">=8.0.0",
-    "fluence-prototype/http": "^2.0",
-    "fluence-prototype/session": "^2.0",
+    "fluence-prototype/http": "^3.0",
+    "fluence-prototype/session": "^3.0",
     "google/recaptcha": "^1.2"
   },
   "autoload": {
@@ -22,5 +22,5 @@
       "FluencePrototype\\Security\\": "src/"
     }
   },
-  "minimum-stability": "stable"
+  "minimum-stability": "dev"
 }

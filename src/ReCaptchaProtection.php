@@ -8,6 +8,9 @@ use Attribute;
 use FluencePrototype\Http\HttpUrl;
 use FluencePrototype\Http\Messages\Request\FormService;
 
+/**
+ *
+ */
 #[Attribute(Attribute::TARGET_METHOD)]
 class ReCaptchaProtection
 {
