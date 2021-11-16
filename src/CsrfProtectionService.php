@@ -60,7 +60,7 @@ class CsrfProtectionService
         }
 
         return (object)[
-            'name' => $this::CSRF_NAME,
+            'csrf_name' => $this::CSRF_NAME,
             'csrf_token' => $this::$csrfToken
         ];
     }
